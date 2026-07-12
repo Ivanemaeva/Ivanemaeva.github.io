@@ -18,7 +18,21 @@
     --lilac-wash:#F8F4FB;
     --lilac-mist:#EFE6F7;
     --card:#FFFFFF;
+    --nav-bg:rgba(248,244,251,.85);
+    --footer-bg:#2E2438;
     --radius:18px;
+  }
+  [data-theme="dark"]{
+    --ink:#EDE6F5;
+    --ink-soft:#B8A9CC;
+    --lilac:#C79BE8;
+    --lilac-deep:#B57EDC;
+    --lilac-dark:#D4B5F0;
+    --lilac-wash:#17101F;
+    --lilac-mist:#2C2140;
+    --card:#221831;
+    --nav-bg:rgba(23,16,31,.85);
+    --footer-bg:#0F0A17;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -32,6 +46,7 @@
     background:var(--lilac-wash);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    transition:background-color .3s, color .3s;
   }
   a{color:var(--lilac-deep)}
   a:focus-visible, button:focus-visible{outline:3px solid var(--lilac);outline-offset:3px;border-radius:4px}
@@ -41,17 +56,25 @@
   /* ---------- NAV ---------- */
   nav{
     position:sticky;top:0;z-index:50;
-    background:rgba(248,244,251,.85);
+    background:var(--nav-bg);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--lilac-mist);
   }
   .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1060px;margin:0 auto}
   .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none}
   .logo em{color:var(--lilac-deep);font-style:normal}
+  .nav-right{display:flex;align-items:center;gap:22px}
   .nav-links{display:flex;gap:26px;list-style:none}
   .nav-links a{text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.92rem;transition:color .2s}
   .nav-links a:hover{color:var(--lilac-deep)}
-  @media(max-width:640px){.nav-links{gap:16px;font-size:.85rem}}
+  #theme-toggle{
+    background:var(--lilac-mist);border:1px solid var(--lilac-mist);
+    border-radius:999px;width:40px;height:40px;font-size:1.05rem;
+    cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:transform .15s, background .2s;
+  }
+  #theme-toggle:hover{transform:scale(1.08)}
+  @media(max-width:640px){.nav-links{gap:14px;font-size:.85rem}.nav-right{gap:12px}}
 
   /* ---------- HERO ---------- */
   header.hero{position:relative;overflow:hidden;padding:96px 0 110px}
@@ -130,7 +153,7 @@
   }
   .skill-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
   .skill-col li{
-    background:#fff;border-radius:12px;padding:9px 14px;font-size:.92rem;
+    background:var(--card);border-radius:12px;padding:9px 14px;font-size:.92rem;
     font-weight:500;color:var(--ink);border:1px solid rgba(139,95,191,.14);
   }
 
@@ -157,7 +180,7 @@
 
   /* ---------- CONTACT / FOOTER ---------- */
   footer{
-    background:var(--ink);color:#EDE6F5;
+    background:var(--footer-bg);color:#EDE6F5;
     padding:80px 0 46px;margin-top:40px;
     border-radius:38px 38px 0 0;
   }
@@ -178,12 +201,15 @@
 <nav>
   <div class="nav-inner">
     <a class="logo" href="#top">Ivane<em>.</em>Nague</a>
-    <ul class="nav-links">
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" aria-label="Switch between dark and light mode">🌙</button>
+    </div>
   </div>
 </nav>
 
@@ -208,7 +234,7 @@
     <span class="eyebrow">Data Science &amp; Business Informatics</span>
     <h1>Turning data into <span class="accent">decisions</span>, one model at a time.</h1>
     <p class="hero-sub">
-      I'm Ivane Maeva Nague — a master's student at the Università di Pisa, in a double-degree
+      I'm Ivane Maeva Nague, a master's student at the Università di Pisa, in a double-degree
       program with Université Paris Dauphine-PSL. I build end-to-end data pipelines: from raw,
       messy datasets to interpretable machine-learning models.
     </p>
@@ -394,11 +420,31 @@
     <div class="contact-links">
       <a href="mailto:naguemaeva26@gmail.com">Email me</a>
       <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BaK1mCcRERe2ech4XRXB1Qg%3D%3D" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a>
     </div>
     <p class="foot-note">© 2026 Ivane Maeva Nague · Built with plain HTML &amp; CSS, hosted on GitHub Pages.</p>
   </div>
 </footer>
+
+<script>
+  (function(){
+    var btn = document.getElementById('theme-toggle');
+    var root = document.documentElement;
+    function setTheme(t){
+      root.setAttribute('data-theme', t);
+      btn.textContent = (t === 'dark') ? '☀️' : '🌙';
+      try { localStorage.setItem('theme', t); } catch(e) {}
+    }
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch(e) {}
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(saved || (prefersDark ? 'dark' : 'light'));
+    btn.addEventListener('click', function(){
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+  })();
+</script>
 
 </body>
 </html>
