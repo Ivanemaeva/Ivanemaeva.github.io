@@ -178,6 +178,53 @@
   .edu-item h3{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;margin:6px 0 4px}
   .edu-item p{color:var(--ink-soft);font-size:.94rem}
 
+  /* ---------- CONTACT FORM ---------- */
+  .form-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px;max-width:640px;
+  }
+  @media(max-width:640px){.form-grid{grid-template-columns:1fr}}
+  .form-field{display:flex;flex-direction:column;gap:6px}
+  .form-field.full{grid-column:1 / -1}
+  .form-field label{font-size:.85rem;font-weight:700;color:#C8A2E0}
+  .form-field input,
+  .form-field select,
+  .form-field textarea{
+    font-family:'Karla',sans-serif;font-size:.95rem;color:#fff;
+    background:rgba(255,255,255,.07);
+    border:1.5px solid rgba(199,155,232,.35);
+    border-radius:12px;padding:12px 14px;
+    transition:border-color .2s, background .2s;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder{color:#8E7FA6}
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus{
+    outline:none;border-color:var(--lilac);background:rgba(255,255,255,.1);
+  }
+  .form-field select{cursor:pointer}
+  .form-field select option{color:#2E2438;background:#fff}
+  .form-field textarea{resize:vertical;min-height:120px}
+  .consent{
+    grid-column:1 / -1;display:flex;align-items:flex-start;gap:10px;
+    font-size:.83rem;color:#B8A9CC;line-height:1.5;
+  }
+  .consent input[type="checkbox"]{
+    margin-top:3px;width:16px;height:16px;accent-color:var(--lilac-deep);cursor:pointer;flex-shrink:0;
+  }
+  .consent a{color:#C8A2E0}
+  .form-submit{
+    grid-column:1 / -1;justify-self:start;
+    font-family:'Karla',sans-serif;font-weight:700;font-size:.95rem;
+    background:var(--lilac-deep);color:#fff;border:none;cursor:pointer;
+    padding:13px 30px;border-radius:999px;
+    box-shadow:0 6px 18px rgba(139,95,191,.35);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .form-submit:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(139,95,191,.45)}
+  .direct-line{margin-top:26px;font-size:.88rem;color:#8E7FA6}
+  .direct-line a{color:#C8A2E0}
+
   /* ---------- CONTACT / FOOTER ---------- */
   footer{
     background:var(--footer-bg);color:#EDE6F5;
@@ -273,7 +320,7 @@
 
         <article class="proj">
           <span class="proj-tag">Clustering · Classification · Pattern Mining</span>
-          <h3>Board Games Dataset : Full DM Pipeline</h3>
+          <h3>Board Games Dataset — Full DM Pipeline</h3>
           <p>
             Complete data-mining pipeline on a board-games dataset: K-Means and hierarchical
             clustering, decision-tree / KNN / Naive Bayes classification, and Apriori association
@@ -292,8 +339,8 @@
           <h3>Ranked-Preference Data Analysis in R</h3>
           <p>
             Statistical analysis of ranked survey data: rank aggregation, Plackett-Luce modelling
-            with maximum likelihood, unfolding multidimensional scaling, and hypothesis testing(
-            re-implemented from a published paper).
+            with maximum likelihood, unfolding multidimensional scaling, and hypothesis testing —
+            re-implemented from a published paper.
           </p>
           <div class="metrics">
             <span class="metric">Plackett-Luce</span>
@@ -305,10 +352,10 @@
 
         <article class="proj">
           <span class="proj-tag">Financial Modelling · Excel</span>
-          <h3>LUREX : Commercial &amp; Production Budget</h3>
+          <h3>LUREX — Commercial &amp; Production Budget</h3>
           <p>
             Full-year budget planning model for a footwear manufacturer: sales forecasting across
-            product lines and a linked production budget with cost allocation built during my
+            product lines and a linked production budget with cost allocation — built during my
             business administration bachelor's.
           </p>
           <div class="metrics">
@@ -381,7 +428,7 @@
         </div>
         <div class="lang">
           <div class="name">Italian</div>
-          <div class="level">C1 </div>
+          <div class="level">B2 — CILS certified </div>
         </div>
       </div>
     </div>
@@ -396,13 +443,13 @@
       <div class="edu">
         <div class="edu-item">
           <span class="when">2025 — 2027</span>
-          <h3>M.Sc. Data Science and Business Informatics : Double Degree</h3>
+          <h3>M.Sc. Data Science and Business Informatics — Double Degree</h3>
           <p>Università di Pisa (Italy) &amp; Université Paris Dauphine-PSL (France). Data mining, machine learning, statistics, databases, optimization, big data systems.</p>
         </div>
         <div class="edu-item">
           <span class="when">2022 — 2025</span>
           <h3>B.Sc. Business Administration (Economia Aziendale)</h3>
-          <p>Università di Pisa : Management &amp; Control curriculum. Management control, financial accounting, corporate finance, statistics.</p>
+          <p>Università di Pisa — Management &amp; Control curriculum. Management control, financial accounting, corporate finance, statistics.</p>
         </div>
       </div>
     </div>
@@ -414,15 +461,51 @@
     <span class="sec-label" style="color:#C8A2E0">Get in touch</span>
     <h2>Let's talk data.</h2>
     <p class="contact-sub">
-      I'm currently looking for a data science internship. If my work looks like a fit,
-      I'd love to hear from you.
+      I'm currently looking for a data science internship. Got a question or an opportunity?
+      Fill out the form below and it'll land straight in my inbox.
     </p>
-    <div class="contact-links">
-      <a href="mailto:naguemaeva26@gmail.com">Email me</a>
-      <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <p class="foot-note">© 2026 Ivane Maeva Nague · Built with plain HTML &amp; CSS, hosted on GitHub Pages.</p>
+
+    <form class="form-grid" action="https://formspree.io/f/mpqvzzzr" method="POST">
+      <div class="form-field">
+        <label for="first-name">First name</label>
+        <input type="text" id="first-name" name="first_name" placeholder="Jane" required>
+      </div>
+      <div class="form-field">
+        <label for="last-name">Last name</label>
+        <input type="text" id="last-name" name="last_name" placeholder="Doe" required>
+      </div>
+      <div class="form-field full">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="jane@company.com" required>
+      </div>
+      <div class="form-field full">
+        <label for="subject">What is this about?</label>
+        <select id="subject" name="subject" required>
+          <option value="" disabled selected>Select an option…</option>
+          <option>Internship opportunity</option>
+          <option>Collaboration on a project</option>
+          <option>Question about my work</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="form-field full">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell me a bit about it…" required></textarea>
+      </div>
+      <label class="consent">
+        <input type="checkbox" name="consent" value="agreed" required>
+        <span>I have read and accept the <a href="privacy.html">Privacy Policy</a> and consent to the processing of my personal data for the purpose of responding to this enquiry.</span>
+      </label>
+      <button type="submit" class="form-submit">Send message</button>
+    </form>
+
+    <p class="direct-line">
+      Prefer email? Reach me directly at <a href="mailto:naguemaeva26@gmail.com">naguemaeva26@gmail.com</a>
+      · <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a>
+      · <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+
+    <p class="foot-note">© 2026 Ivane Maeva Nague · <a href="privacy.html" style="color:#8E7FA6">Privacy Policy</a> · Built with plain HTML &amp; CSS, hosted on GitHub Pages.</p>
   </div>
 </footer>
 
