@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ivane Maeva Nague — Data Science Portfolio</title>
+<meta name="description" content="Data Science & Business Informatics master's student at Università di Pisa × Université Paris Dauphine-PSL. Projects in data mining, machine learning and statistics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2E2438;
+    --ink-soft:#6E6180;
+    --lilac:#B57EDC;
+    --lilac-deep:#8B5FBF;
+    --lilac-dark:#5E3A8C;
+    --lilac-wash:#F8F4FB;
+    --lilac-mist:#EFE6F7;
+    --card:#FFFFFF;
+    --radius:18px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    font-family:'Karla',sans-serif;
+    color:var(--ink);
+    background:var(--lilac-wash);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--lilac-deep)}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--lilac);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(248,244,251,.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--lilac-mist);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1060px;margin:0 auto}
+  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none}
+  .logo em{color:var(--lilac-deep);font-style:normal}
+  .nav-links{display:flex;gap:26px;list-style:none}
+  .nav-links a{text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.92rem;transition:color .2s}
+  .nav-links a:hover{color:var(--lilac-deep)}
+  @media(max-width:640px){.nav-links{gap:16px;font-size:.85rem}}
+
+  /* ---------- HERO ---------- */
+  header.hero{position:relative;overflow:hidden;padding:96px 0 110px}
+  .hero-grid{position:relative;z-index:2}
+  .eyebrow{
+    display:inline-block;font-weight:700;font-size:.78rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--lilac-deep);
+    background:var(--lilac-mist);padding:6px 14px;border-radius:999px;margin-bottom:22px;
+  }
+  h1{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(2.4rem,5.6vw,4rem);
+    line-height:1.08;letter-spacing:-.01em;max-width:16ch;
+  }
+  h1 .accent{color:var(--lilac-deep)}
+  .hero-sub{margin-top:22px;max-width:56ch;color:var(--ink-soft);font-size:1.08rem}
+  .hero-cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:700;font-size:.95rem;
+    padding:13px 26px;border-radius:999px;transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--lilac-deep);color:#fff;box-shadow:0 6px 18px rgba(139,95,191,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(139,95,191,.42)}
+  .btn-ghost{border:2px solid var(--lilac-deep);color:var(--lilac-deep)}
+  .btn-ghost:hover{background:var(--lilac-mist)}
+
+  /* cluster scatter — nod to her clustering work */
+  .cluster{position:absolute;inset:0;z-index:1;pointer-events:none}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:84px 0}
+  .sec-head{margin-bottom:44px}
+  .sec-label{
+    font-weight:700;font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--lilac-deep);display:block;margin-bottom:10px;
+  }
+  h2{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(1.7rem,3.4vw,2.4rem);letter-spacing:-.01em}
+
+  /* ---------- PROJECTS ---------- */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  @media(max-width:760px){.proj-grid{grid-template-columns:1fr}}
+  .proj{
+    background:var(--card);border-radius:var(--radius);
+    padding:30px 28px;border:1px solid var(--lilac-mist);
+    display:flex;flex-direction:column;gap:14px;
+    transition:transform .18s, box-shadow .18s;
+  }
+  .proj:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(94,58,140,.12)}
+  .proj-tag{
+    align-self:flex-start;font-size:.72rem;font-weight:700;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--lilac-dark);
+    background:var(--lilac-mist);padding:4px 12px;border-radius:999px;
+  }
+  .proj h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.3rem;line-height:1.25}
+  .proj p{color:var(--ink-soft);font-size:.95rem;flex-grow:1}
+  .metrics{display:flex;flex-wrap:wrap;gap:8px}
+  .metric{
+    font-size:.78rem;font-weight:700;color:var(--lilac-deep);
+    border:1.5px solid var(--lilac-mist);border-radius:999px;padding:4px 12px;
+    background:var(--lilac-wash);
+  }
+  .proj a.repo{
+    font-weight:700;font-size:.92rem;text-decoration:none;color:var(--lilac-deep);
+  }
+  .proj a.repo:hover{text-decoration:underline}
+
+  /* ---------- SKILLS ---------- */
+  .skills{background:var(--lilac-mist);border-radius:28px}
+  .skills-inner{padding:70px 48px}
+  @media(max-width:640px){.skills-inner{padding:50px 26px}}
+  .skill-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:8px}
+  @media(max-width:820px){.skill-cols{grid-template-columns:1fr}}
+  .skill-col h3{
+    font-family:'Fraunces',serif;font-size:1.08rem;font-weight:600;
+    margin-bottom:14px;color:var(--lilac-dark);
+  }
+  .skill-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .skill-col li{
+    background:#fff;border-radius:12px;padding:9px 14px;font-size:.92rem;
+    font-weight:500;color:var(--ink);border:1px solid rgba(139,95,191,.14);
+  }
+
+  /* ---------- LANGUAGES ---------- */
+  .lang-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:700px){.lang-strip{grid-template-columns:1fr}}
+  .lang{
+    background:var(--card);border:1px solid var(--lilac-mist);border-radius:var(--radius);
+    padding:26px;text-align:center;
+  }
+  .lang .name{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600}
+  .lang .level{color:var(--lilac-deep);font-weight:700;font-size:.9rem;margin-top:6px}
+
+  /* ---------- ABOUT / EDUCATION ---------- */
+  .edu{display:flex;flex-direction:column;gap:20px;max-width:720px}
+  .edu-item{
+    background:var(--card);border-left:4px solid var(--lilac);border-radius:0 var(--radius) var(--radius) 0;
+    padding:22px 26px;border-top:1px solid var(--lilac-mist);
+    border-right:1px solid var(--lilac-mist);border-bottom:1px solid var(--lilac-mist);
+  }
+  .edu-item .when{font-size:.8rem;font-weight:700;color:var(--lilac-deep);letter-spacing:.06em;text-transform:uppercase}
+  .edu-item h3{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;margin:6px 0 4px}
+  .edu-item p{color:var(--ink-soft);font-size:.94rem}
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{
+    background:var(--ink);color:#EDE6F5;
+    padding:80px 0 46px;margin-top:40px;
+    border-radius:38px 38px 0 0;
+  }
+  footer h2{color:#fff}
+  .contact-sub{color:#B8A9CC;margin-top:14px;max-width:48ch}
+  .contact-links{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+  .contact-links a{
+    text-decoration:none;font-weight:700;font-size:.95rem;
+    color:#fff;border:2px solid var(--lilac);border-radius:999px;padding:11px 24px;
+    transition:background .2s;
+  }
+  .contact-links a:hover{background:var(--lilac-deep);border-color:var(--lilac-deep)}
+  .foot-note{margin-top:60px;font-size:.82rem;color:#8E7FA6;border-top:1px solid rgba(255,255,255,.12);padding-top:24px}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top">Ivane<em>.</em>Nague</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <!-- decorative cluster scatter: a quiet nod to clustering work -->
+  <svg class="cluster" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="#B57EDC" opacity="0.16">
+      <circle cx="930" cy="110" r="9"/><circle cx="975" cy="140" r="7"/><circle cx="905" cy="165" r="6"/>
+      <circle cx="960" cy="185" r="8"/><circle cx="1010" cy="120" r="5"/><circle cx="1000" cy="175" r="6"/>
+    </g>
+    <g fill="#8B5FBF" opacity="0.14">
+      <circle cx="1080" cy="330" r="10"/><circle cx="1125" cy="300" r="6"/><circle cx="1110" cy="370" r="7"/>
+      <circle cx="1060" cy="385" r="5"/><circle cx="1150" cy="345" r="8"/>
+    </g>
+    <g fill="#5E3A8C" opacity="0.10">
+      <circle cx="820" cy="420" r="8"/><circle cx="865" cy="450" r="6"/><circle cx="795" cy="465" r="5"/>
+      <circle cx="850" cy="400" r="5"/>
+    </g>
+  </svg>
+
+  <div class="wrap hero-grid">
+    <span class="eyebrow">Data Science &amp; Business Informatics</span>
+    <h1>Turning data into <span class="accent">decisions</span>, one model at a time.</h1>
+    <p class="hero-sub">
+      I'm Ivane Maeva Nague — a master's student at the Università di Pisa, in a double-degree
+      program with Université Paris Dauphine-PSL. I build end-to-end data pipelines: from raw,
+      messy datasets to interpretable machine-learning models.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#projects">See my projects</a>
+      <a class="btn btn-ghost" href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub profile</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-label">Selected work</span>
+        <h2>Projects</h2>
+      </div>
+      <div class="proj-grid">
+
+        <article class="proj">
+          <span class="proj-tag">Machine Learning · Time Series · XAI</span>
+          <h3>Predicting Problematic Internet Use</h3>
+          <p>
+            End-to-end pipeline on the Child Mind Institute dataset, combining tabular questionnaire
+            data with wearable-sensor time series. Outlier detection, imbalanced classification,
+            regression, shapelet-based time-series classification, and model explainability with
+            LIME &amp; SHAP.
+          </p>
+          <div class="metrics">
+            <span class="metric">Macro F1 0.47</span>
+            <span class="metric">TS accuracy 71%</span>
+            <span class="metric">XGBoost · SHAP</span>
+          </div>
+          <a class="repo" href="https://github.com/Ivanemaeva/dm2-cmi-internet-use" target="_blank" rel="noopener">View repository →</a>
+        </article>
+
+        <article class="proj">
+          <span class="proj-tag">Clustering · Classification · Pattern Mining</span>
+          <h3>Board Games Dataset — Full DM Pipeline</h3>
+          <p>
+            Complete data-mining pipeline on a board-games dataset: K-Means and hierarchical
+            clustering, decision-tree / KNN / Naive Bayes classification, and Apriori association
+            rules with high-lift patterns.
+          </p>
+          <div class="metrics">
+            <span class="metric">Silhouette 0.579</span>
+            <span class="metric">DT 70.9%</span>
+            <span class="metric">Lift &gt; 7</span>
+          </div>
+          <a class="repo" href="https://github.com/Ivanemaeva/DM1_BoardGames" target="_blank" rel="noopener">View repository →</a>
+        </article>
+
+        <article class="proj">
+          <span class="proj-tag">Statistics · R</span>
+          <h3>Ranked-Preference Data Analysis in R</h3>
+          <p>
+            Statistical analysis of ranked survey data: rank aggregation, Plackett-Luce modelling
+            with maximum likelihood, unfolding multidimensional scaling, and hypothesis testing —
+            re-implemented from a published paper.
+          </p>
+          <div class="metrics">
+            <span class="metric">Plackett-Luce</span>
+            <span class="metric">UMDS</span>
+            <span class="metric">R</span>
+          </div>
+          <a class="repo" href="https://github.com/Ivanemaeva/sds-faculty-rankings-r" target="_blank" rel="noopener">View repository →</a>
+        </article>
+
+        <article class="proj">
+          <span class="proj-tag">Financial Modelling · Excel</span>
+          <h3>LUREX — Commercial &amp; Production Budget</h3>
+          <p>
+            Full-year budget planning model for a footwear manufacturer: sales forecasting across
+            product lines and a linked production budget with cost allocation — built during my
+            business administration bachelor's.
+          </p>
+          <div class="metrics">
+            <span class="metric">Budget model</span>
+            <span class="metric">Excel</span>
+          </div>
+          <a class="repo" href="https://github.com/Ivanemaeva/lurex-budget-planning" target="_blank" rel="noopener">View repository →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="skills">
+        <div class="skills-inner">
+          <div class="sec-head">
+            <span class="sec-label">Toolbox</span>
+            <h2>Skills</h2>
+          </div>
+          <div class="skill-cols">
+            <div class="skill-col">
+              <h3>Languages &amp; Tools</h3>
+              <ul>
+                <li>Python</li>
+                <li>SQL</li>
+                <li>R</li>
+                <li>Excel · Git · GitHub</li>
+              </ul>
+            </div>
+            <div class="skill-col">
+              <h3>Machine Learning</h3>
+              <ul>
+                <li>Clustering &amp; dimensionality reduction</li>
+                <li>Ensemble methods (XGBoost, AdaBoost, RF)</li>
+                <li>Time series (shapelets, DTW, matrix profile)</li>
+                <li>Explainability (LIME, SHAP)</li>
+              </ul>
+            </div>
+            <div class="skill-col">
+              <h3>Data &amp; Statistics</h3>
+              <ul>
+                <li>Data mining pipelines</li>
+                <li>Database design (ER, SQL, normalization)</li>
+                <li>Statistical inference &amp; hypothesis testing</li>
+                <li>Anomaly &amp; outlier detection</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="languages">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-label">Trilingual</span>
+        <h2>Languages</h2>
+      </div>
+      <div class="lang-strip">
+        <div class="lang">
+          <div class="name">French</div>
+          <div class="level">Native</div>
+        </div>
+        <div class="lang">
+          <div class="name">English</div>
+          <div class="level">Native</div>
+        </div>
+        <div class="lang">
+          <div class="name">Italian</div>
+          <div class="level">B2 — CILS certified (72/100)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="sec-label">Background</span>
+        <h2>Education</h2>
+      </div>
+      <div class="edu">
+        <div class="edu-item">
+          <span class="when">2025 — 2027</span>
+          <h3>M.Sc. Data Science and Business Informatics — Double Degree</h3>
+          <p>Università di Pisa (Italy) &amp; Université Paris Dauphine-PSL (France). Data mining, machine learning, statistics, databases, optimization, big data systems.</p>
+        </div>
+        <div class="edu-item">
+          <span class="when">2022 — 2025</span>
+          <h3>B.Sc. Business Administration (Economia Aziendale)</h3>
+          <p>Università di Pisa — Management &amp; Control curriculum. Management control, financial accounting, corporate finance, statistics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <span class="sec-label" style="color:#C8A2E0">Get in touch</span>
+    <h2>Let's talk data.</h2>
+    <p class="contact-sub">
+      I'm currently looking for a data science internship. If my work looks like a fit,
+      I'd love to hear from you.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:YOUR_EMAIL_HERE">Email me</a>
+      <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a>
+      <a href="YOUR_LINKEDIN_URL_HERE" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="foot-note">© 2026 Ivane Maeva Nague · Built with plain HTML &amp; CSS, hosted on GitHub Pages.</p>
+  </div>
+</footer>
+
+</body>
+</html>
