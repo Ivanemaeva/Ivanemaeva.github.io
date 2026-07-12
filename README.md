@@ -1,2 +1,2 @@
 # Ivanemaeva.github.io
-My data science portofoglio
+My data science portfoglio at https://ivanemaeva.github.io 
