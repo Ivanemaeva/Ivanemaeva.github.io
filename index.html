@@ -60,21 +60,49 @@
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--lilac-mist);
   }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1060px;margin:0 auto}
-  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1060px;margin:0 auto;gap:16px}
+  .logo{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none;flex-shrink:0}
   .logo em{color:var(--lilac-deep);font-style:normal}
-  .nav-right{display:flex;align-items:center;gap:22px}
+  .nav-right{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
   .nav-links{display:flex;gap:26px;list-style:none}
   .nav-links a{text-decoration:none;color:var(--ink-soft);font-weight:600;font-size:.92rem;transition:color .2s}
   .nav-links a:hover{color:var(--lilac-deep)}
+
+  /* ---------- LANG SWITCHER ---------- */
+  .lang-switcher{
+    display:flex;align-items:center;
+    background:var(--lilac-mist);
+    border-radius:999px;
+    padding:3px;
+    gap:2px;
+    border:1px solid rgba(139,95,191,.18);
+    flex-shrink:0;
+  }
+  .lang-switcher button{
+    background:none;border:none;cursor:pointer;
+    font-family:'Karla',sans-serif;font-weight:700;font-size:.75rem;
+    letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-soft);
+    padding:5px 10px;border-radius:999px;
+    transition:background .15s, color .15s;
+    line-height:1;
+  }
+  .lang-switcher button:hover{color:var(--lilac-deep)}
+  .lang-switcher button[aria-pressed="true"]{
+    background:var(--lilac-deep);
+    color:#fff;
+  }
+
   #theme-toggle{
     background:var(--lilac-mist);border:1px solid var(--lilac-mist);
     border-radius:999px;width:40px;height:40px;font-size:1.05rem;
     cursor:pointer;display:flex;align-items:center;justify-content:center;
     transition:transform .15s, background .2s;
+    flex-shrink:0;
   }
   #theme-toggle:hover{transform:scale(1.08)}
-  @media(max-width:640px){.nav-links{gap:14px;font-size:.85rem}.nav-right{gap:12px}}
+  @media(max-width:760px){.nav-links{gap:14px;font-size:.85rem}.nav-right{gap:8px}}
+  @media(max-width:540px){.nav-links{display:none}}
 
   /* ---------- HERO ---------- */
   header.hero{position:relative;overflow:hidden;padding:96px 0 110px}
@@ -101,7 +129,19 @@
   .btn-ghost{border:2px solid var(--lilac-deep);color:var(--lilac-deep)}
   .btn-ghost:hover{background:var(--lilac-mist)}
 
-  /* cluster scatter — nod to her clustering work */
+  /* ---------- CV BUTTON ---------- */
+  .btn-cv{
+    display:inline-flex;align-items:center;gap:8px;
+    border:2px solid var(--lilac-deep);color:var(--lilac-deep);
+    font-weight:700;font-size:.95rem;
+    padding:13px 26px;border-radius:999px;
+    text-decoration:none;
+    transition:transform .15s, background .15s;
+  }
+  .btn-cv:hover{background:var(--lilac-mist);transform:translateY(-2px)}
+  .btn-cv svg{flex-shrink:0}
+
+  /* cluster scatter */
   .cluster{position:absolute;inset:0;z-index:1;pointer-events:none}
 
   /* ---------- SECTIONS ---------- */
@@ -250,11 +290,16 @@
     <a class="logo" href="#top">Ivane<em>.</em>Nague</a>
     <div class="nav-right">
       <ul class="nav-links">
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#education" data-i18n="nav.education">Education</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
+      <div class="lang-switcher" role="group" aria-label="Language / Langue / Lingua">
+        <button data-lang="en" aria-pressed="true">EN</button>
+        <button data-lang="fr" aria-pressed="false">FR</button>
+        <button data-lang="it" aria-pressed="false">IT</button>
+      </div>
       <button id="theme-toggle" aria-label="Switch between dark and light mode">🌙</button>
     </div>
   </div>
@@ -278,15 +323,18 @@
   </svg>
 
   <div class="wrap hero-grid">
-    <span class="eyebrow">Data Science &amp; Business Informatics</span>
-    <h1>Turning data into <span class="accent">decisions</span>, one model at a time.</h1>
-    <p class="hero-sub">
-      I'm Ivane Maeva Nague, a master's student at the Università di Pisa. I build end-to-end data pipelines: from raw,
-      messy datasets to interpretable machine-learning models.
-    </p>
+    <span class="eyebrow" data-i18n="hero.eyebrow">Data Science &amp; Business Informatics</span>
+    <h1 data-i18n-html="hero.h1">Turning data into <span class="accent">decisions</span>, one model at a time.</h1>
+    <p class="hero-sub" data-i18n="hero.sub">I'm Ivane Maeva Nague, a master's student at the Università di Pisa. I build end-to-end data pipelines: from raw, messy datasets to interpretable machine-learning models.</p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#projects">See my projects</a>
-      <a class="btn btn-ghost" href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub profile</a>
+      <a class="btn btn-primary" href="#projects" data-i18n="hero.cta.projects">See my projects</a>
+      <a class="btn btn-ghost" href="https://github.com/Ivanemaeva" target="_blank" rel="noopener" data-i18n="hero.cta.github">GitHub profile</a>
+      <a class="btn-cv" href="CV Maeva.pdf" download data-i18n-cv>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1v9M4 7l4 4 4-4M2 13h12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span data-i18n="hero.cta.cv">Download CV</span>
+      </a>
     </div>
   </div>
 </header>
@@ -295,73 +343,56 @@
   <section id="projects">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-label">Selected work</span>
-        <h2>Projects</h2>
+        <span class="sec-label" data-i18n="projects.label">Selected work</span>
+        <h2 data-i18n="projects.h2">Projects</h2>
       </div>
       <div class="proj-grid">
 
         <article class="proj">
           <span class="proj-tag">Machine Learning · Time Series · XAI</span>
-          <h3>Predicting Problematic Internet Use</h3>
-          <p>
-            End-to-end pipeline on the Child Mind Institute dataset, combining tabular questionnaire
-            data with wearable-sensor time series. Outlier detection, imbalanced classification,
-            regression, shapelet-based time-series classification, and model explainability with
-            LIME &amp; SHAP.
-          </p>
+          <h3 data-i18n="proj1.h3">Predicting Problematic Internet Use</h3>
+          <p data-i18n="proj1.p">End-to-end pipeline on the Child Mind Institute dataset, combining tabular questionnaire data with wearable-sensor time series. Outlier detection, imbalanced classification, regression, shapelet-based time-series classification, and model explainability with LIME & SHAP.</p>
           <div class="metrics">
             <span class="metric">Macro F1 0.47</span>
             <span class="metric">TS accuracy 71%</span>
             <span class="metric">XGBoost · SHAP</span>
           </div>
-          <a class="repo" href="https://github.com/Ivanemaeva/DM2_CMI_INTERNET_USE" target="_blank" rel="noopener">View repository →</a>
+          <a class="repo" href="https://github.com/Ivanemaeva/DM2_CMI_INTERNET_USE" target="_blank" rel="noopener" data-i18n="proj.repo">View repository →</a>
         </article>
 
         <article class="proj">
           <span class="proj-tag">Clustering · Classification · Pattern Mining</span>
-          <h3>Board Games Dataset : Full DM Pipeline</h3>
-          <p>
-            Complete data-mining pipeline on a board-games dataset: K-Means and hierarchical
-            clustering, decision-tree / KNN / Naive Bayes classification, and Apriori association
-            rules with high-lift patterns.
-          </p>
+          <h3 data-i18n="proj2.h3">Board Games Dataset : Full DM Pipeline</h3>
+          <p data-i18n="proj2.p">Complete data-mining pipeline on a board-games dataset: K-Means and hierarchical clustering, decision-tree / KNN / Naive Bayes classification, and Apriori association rules with high-lift patterns.</p>
           <div class="metrics">
             <span class="metric">Silhouette 0.579</span>
             <span class="metric">DT 70.9%</span>
             <span class="metric">Lift &gt; 7</span>
           </div>
-          <a class="repo" href="https://github.com/Ivanemaeva/DM1_BoardGames" target="_blank" rel="noopener">View repository →</a>
+          <a class="repo" href="https://github.com/Ivanemaeva/DM1_BoardGames" target="_blank" rel="noopener" data-i18n="proj.repo">View repository →</a>
         </article>
 
         <article class="proj">
           <span class="proj-tag">Statistics · R</span>
-          <h3>Ranked-Preference Data Analysis in R</h3>
-          <p>
-            Statistical analysis of ranked survey data: rank aggregation, Plackett-Luce modelling
-            with maximum likelihood, unfolding multidimensional scaling, and hypothesis testing (
-            re-implemented from a published paper) .
-          </p>
+          <h3 data-i18n="proj3.h3">Ranked-Preference Data Analysis in R</h3>
+          <p data-i18n="proj3.p">Statistical analysis of ranked survey data: rank aggregation, Plackett-Luce modelling with maximum likelihood, unfolding multidimensional scaling, and hypothesis testing (re-implemented from a published paper).</p>
           <div class="metrics">
             <span class="metric">Plackett-Luce</span>
             <span class="metric">UMDS</span>
             <span class="metric">R</span>
           </div>
-          <a class="repo" href="https://github.com/Ivanemaeva/sds-faculty-rankings-r" target="_blank" rel="noopener">View repository →</a>
+          <a class="repo" href="https://github.com/Ivanemaeva/sds-faculty-rankings-r" target="_blank" rel="noopener" data-i18n="proj.repo">View repository →</a>
         </article>
 
         <article class="proj">
           <span class="proj-tag">Financial Modelling · Excel</span>
-          <h3>LUREX : Commercial &amp; Production Budget</h3>
-          <p>
-            Full-year budget planning model for a footwear manufacturer: sales forecasting across
-            product lines and a linked production budget with cost allocation built during my
-            business administration bachelor's.
-          </p>
+          <h3 data-i18n="proj4.h3">LUREX : Commercial &amp; Production Budget</h3>
+          <p data-i18n="proj4.p">Full-year budget planning model for a footwear manufacturer: sales forecasting across product lines and a linked production budget with cost allocation built during my business administration bachelor's.</p>
           <div class="metrics">
             <span class="metric">Budget model</span>
             <span class="metric">Excel</span>
           </div>
-          <a class="repo" href="https://github.com/Ivanemaeva/lurex-budget-planning" target="_blank" rel="noopener">View repository →</a>
+          <a class="repo" href="https://github.com/Ivanemaeva/lurex-budget-planning" target="_blank" rel="noopener" data-i18n="proj.repo">View repository →</a>
         </article>
 
       </div>
@@ -373,12 +404,12 @@
       <div class="skills">
         <div class="skills-inner">
           <div class="sec-head">
-            <span class="sec-label">Toolbox</span>
-            <h2>Skills</h2>
+            <span class="sec-label" data-i18n="skills.label">Toolbox</span>
+            <h2 data-i18n="skills.h2">Skills</h2>
           </div>
           <div class="skill-cols">
             <div class="skill-col">
-              <h3>Languages &amp; Tools</h3>
+              <h3 data-i18n="skills.col1.h3">Languages &amp; Tools</h3>
               <ul>
                 <li>Python</li>
                 <li>SQL</li>
@@ -387,21 +418,21 @@
               </ul>
             </div>
             <div class="skill-col">
-              <h3>Machine Learning</h3>
+              <h3 data-i18n="skills.col2.h3">Machine Learning</h3>
               <ul>
-                <li>Clustering &amp; dimensionality reduction</li>
-                <li>Ensemble methods (XGBoost, AdaBoost, RF)</li>
-                <li>Time series (shapelets, DTW, matrix profile)</li>
-                <li>Explainability (LIME, SHAP)</li>
+                <li data-i18n="skills.col2.li1">Clustering &amp; dimensionality reduction</li>
+                <li data-i18n="skills.col2.li2">Ensemble methods (XGBoost, AdaBoost, RF)</li>
+                <li data-i18n="skills.col2.li3">Time series (shapelets, DTW, matrix profile)</li>
+                <li data-i18n="skills.col2.li4">Explainability (LIME, SHAP)</li>
               </ul>
             </div>
             <div class="skill-col">
-              <h3>Data &amp; Statistics</h3>
+              <h3 data-i18n="skills.col3.h3">Data &amp; Statistics</h3>
               <ul>
-                <li>Data mining pipelines</li>
-                <li>Database design (ER, SQL, normalization)</li>
-                <li>Statistical inference &amp; hypothesis testing</li>
-                <li>Anomaly &amp; outlier detection</li>
+                <li data-i18n="skills.col3.li1">Data mining pipelines</li>
+                <li data-i18n="skills.col3.li2">Database design (ER, SQL, normalization)</li>
+                <li data-i18n="skills.col3.li3">Statistical inference &amp; hypothesis testing</li>
+                <li data-i18n="skills.col3.li4">Anomaly &amp; outlier detection</li>
               </ul>
             </div>
           </div>
@@ -413,21 +444,21 @@
   <section id="languages">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-label">Trilingual</span>
-        <h2>Languages</h2>
+        <span class="sec-label" data-i18n="langs.label">Trilingual</span>
+        <h2 data-i18n="langs.h2">Languages</h2>
       </div>
       <div class="lang-strip">
         <div class="lang">
-          <div class="name">French</div>
-          <div class="level">Native</div>
+          <div class="name" data-i18n="langs.fr.name">French</div>
+          <div class="level" data-i18n="langs.fr.level">Native</div>
         </div>
         <div class="lang">
-          <div class="name">English</div>
-          <div class="level">Native</div>
+          <div class="name" data-i18n="langs.en.name">English</div>
+          <div class="level" data-i18n="langs.en.level">Native</div>
         </div>
         <div class="lang">
-          <div class="name">Italian</div>
-          <div class="level">C1 </div>
+          <div class="name" data-i18n="langs.it.name">Italian</div>
+          <div class="level" data-i18n="langs.it.level">C1</div>
         </div>
       </div>
     </div>
@@ -436,19 +467,19 @@
   <section id="education">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-label">Background</span>
-        <h2>Education</h2>
+        <span class="sec-label" data-i18n="edu.label">Background</span>
+        <h2 data-i18n="edu.h2">Education</h2>
       </div>
       <div class="edu">
         <div class="edu-item">
-         <span class="when">2025 — Present</span>
-          <h3>M.Sc. Data Science and Business Informatics</h3>
-          <p>Università di Pisa (Italy). Data mining, machine learning, statistics, databases, optimization, big data systems.</p>
+          <span class="when" data-i18n="edu.item1.when">2025 — Present</span>
+          <h3 data-i18n="edu.item1.h3">M.Sc. Data Science and Business Informatics</h3>
+          <p data-i18n="edu.item1.p">Università di Pisa (Italy). Data mining, machine learning, statistics, databases, optimization, big data systems.</p>
         </div>
         <div class="edu-item">
           <span class="when">2022 — 2025</span>
-          <h3>B.Sc. Business Administration (Economia Aziendale)</h3>
-          <p>Università di Pisa : Management &amp; Control curriculum. Management control, financial accounting, corporate finance, statistics.</p>
+          <h3 data-i18n="edu.item2.h3">B.Sc. Business Administration (Economia Aziendale)</h3>
+          <p data-i18n="edu.item2.p">Università di Pisa : Management &amp; Control curriculum. Management control, financial accounting, corporate finance, statistics.</p>
         </div>
       </div>
     </div>
@@ -457,75 +488,338 @@
 
 <footer id="contact">
   <div class="wrap">
-    <span class="sec-label" style="color:#C8A2E0">Get in touch</span>
-    <h2>Let's talk data.</h2>
-    <p class="contact-sub">
-      I'm currently looking for a data science internship. Got a question or an opportunity?
-      Fill out the form below and it'll land straight in my inbox.
-    </p>
+    <span class="sec-label" style="color:#C8A2E0" data-i18n="contact.label">Get in touch</span>
+    <h2 data-i18n="contact.h2">Let's talk data.</h2>
+    <p class="contact-sub" data-i18n="contact.sub">I'm currently looking for a data science internship. Got a question or an opportunity? Fill out the form below and it'll land straight in my inbox.</p>
 
     <form class="form-grid" action="https://formspree.io/f/mpqvzzzr" method="POST">
       <div class="form-field">
-        <label for="first-name">First name</label>
+        <label for="first-name" data-i18n="form.firstname">First name</label>
         <input type="text" id="first-name" name="first_name" placeholder="Jane" required>
       </div>
       <div class="form-field">
-        <label for="last-name">Last name</label>
+        <label for="last-name" data-i18n="form.lastname">Last name</label>
         <input type="text" id="last-name" name="last_name" placeholder="Doe" required>
       </div>
       <div class="form-field full">
-        <label for="email">Email address</label>
-        <input type="email" id="email" name="email" placeholder="JanePatrick@company.com" required>
+        <label for="email" data-i18n="form.email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="jane@company.com" required>
       </div>
       <div class="form-field full">
-        <label for="subject">What is this about?</label>
+        <label for="subject" data-i18n="form.subject">What is this about?</label>
         <select id="subject" name="subject" required>
-          <option value="" disabled selected>Select an option…</option>
-          <option>Internship opportunity</option>
-          <option>Collaboration on a project</option>
-          <option>Question about my work</option>
-          <option>Something else</option>
+          <option value="" disabled selected data-i18n="form.select.default">Select an option…</option>
+          <option data-i18n="form.select.opt1">Internship opportunity</option>
+          <option data-i18n="form.select.opt2">Collaboration on a project</option>
+          <option data-i18n="form.select.opt3">Question about my work</option>
+          <option data-i18n="form.select.opt4">Something else</option>
         </select>
       </div>
       <div class="form-field full">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell me a bit about it…" required></textarea>
+        <label for="message" data-i18n="form.message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell me a bit about it…" data-i18n-placeholder="form.textarea.placeholder" required></textarea>
       </div>
       <label class="consent">
         <input type="checkbox" name="consent" value="agreed" required>
-        <span>I have read and accept the <a href="privacy.html">Privacy Policy</a> and consent to the processing of my personal data for the purpose of responding to this enquiry.</span>
+        <span data-i18n-html="form.consent">I have read and accept the <a href="privacy.html">Privacy Policy</a> and consent to the processing of my personal data for the purpose of responding to this enquiry.</span>
       </label>
-      <button type="submit" class="form-submit">Send message</button>
+      <button type="submit" class="form-submit" data-i18n="form.submit">Send message</button>
     </form>
 
-    <p class="direct-line">
-      Prefer email? Reach me directly at <a href="mailto:naguemaeva26@gmail.com">naguemaeva26@gmail.com</a>
-      · <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a>
-      · <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a>
-    </p>
+    <p class="direct-line" data-i18n-html="contact.direct">Prefer email? Reach me directly at <a href="mailto:naguemaeva26@gmail.com">naguemaeva26@gmail.com</a> · <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a></p>
 
-    <p class="foot-note">© 2026 Ivane Maeva Nague · <a href="privacy.html" style="color:#8E7FA6">Privacy Policy</a> · Built with plain HTML &amp; CSS, hosted on GitHub Pages.</p>
+    <p class="foot-note" data-i18n-html="contact.footnote">© 2026 Ivane Maeva Nague · <a href="privacy.html" style="color:#8E7FA6">Privacy Policy</a> · Built with plain HTML &amp; CSS, hosted on GitHub Pages.</p>
   </div>
 </footer>
 
 <script>
-  (function(){
-    var btn = document.getElementById('theme-toggle');
-    var root = document.documentElement;
-    function setTheme(t){
-      root.setAttribute('data-theme', t);
-      btn.textContent = (t === 'dark') ? '☀️' : '🌙';
-      try { localStorage.setItem('theme', t); } catch(e) {}
-    }
-    var saved = null;
-    try { saved = localStorage.getItem('theme'); } catch(e) {}
-    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setTheme(saved || (prefersDark ? 'dark' : 'light'));
-    btn.addEventListener('click', function(){
-      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      setTheme(next);
-    });
-  })();
+/* ============================================================
+   TRANSLATIONS
+   ============================================================ */
+const i18n = {
+  en: {
+    /* nav */
+    "nav.projects":        "Projects",
+    "nav.skills":          "Skills",
+    "nav.education":       "Education",
+    "nav.contact":         "Contact",
+    /* hero */
+    "hero.eyebrow":        "Data Science & Business Informatics",
+    "hero.h1":             'Turning data into <span class="accent">decisions</span>, one model at a time.',
+    "hero.sub":            "I'm Ivane Maeva Nague, a master's student at the Università di Pisa. I build end-to-end data pipelines: from raw, messy datasets to interpretable machine-learning models.",
+    "hero.cta.projects":   "See my projects",
+    "hero.cta.github":     "GitHub profile",
+    "hero.cta.cv":         "Download CV",
+    /* projects */
+    "projects.label":      "Selected work",
+    "projects.h2":         "Projects",
+    "proj1.h3":            "Predicting Problematic Internet Use",
+    "proj1.p":             "End-to-end pipeline on the Child Mind Institute dataset, combining tabular questionnaire data with wearable-sensor time series. Outlier detection, imbalanced classification, regression, shapelet-based time-series classification, and model explainability with LIME & SHAP.",
+    "proj2.h3":            "Board Games Dataset : Full DM Pipeline",
+    "proj2.p":             "Complete data-mining pipeline on a board-games dataset: K-Means and hierarchical clustering, decision-tree / KNN / Naive Bayes classification, and Apriori association rules with high-lift patterns.",
+    "proj3.h3":            "Ranked-Preference Data Analysis in R",
+    "proj3.p":             "Statistical analysis of ranked survey data: rank aggregation, Plackett-Luce modelling with maximum likelihood, unfolding multidimensional scaling, and hypothesis testing (re-implemented from a published paper).",
+    "proj4.h3":            "LUREX : Commercial & Production Budget",
+    "proj4.p":             "Full-year budget planning model for a footwear manufacturer: sales forecasting across product lines and a linked production budget with cost allocation built during my business administration bachelor's.",
+    "proj.repo":           "View repository →",
+    /* skills */
+    "skills.label":        "Toolbox",
+    "skills.h2":           "Skills",
+    "skills.col1.h3":      "Languages & Tools",
+    "skills.col2.h3":      "Machine Learning",
+    "skills.col2.li1":     "Clustering & dimensionality reduction",
+    "skills.col2.li2":     "Ensemble methods (XGBoost, AdaBoost, RF)",
+    "skills.col2.li3":     "Time series (shapelets, DTW, matrix profile)",
+    "skills.col2.li4":     "Explainability (LIME, SHAP)",
+    "skills.col3.h3":      "Data & Statistics",
+    "skills.col3.li1":     "Data mining pipelines",
+    "skills.col3.li2":     "Database design (ER, SQL, normalization)",
+    "skills.col3.li3":     "Statistical inference & hypothesis testing",
+    "skills.col3.li4":     "Anomaly & outlier detection",
+    /* languages section */
+    "langs.label":         "Trilingual",
+    "langs.h2":            "Languages",
+    "langs.fr.name":       "French",
+    "langs.fr.level":      "Native",
+    "langs.en.name":       "English",
+    "langs.en.level":      "Native",
+    "langs.it.name":       "Italian",
+    "langs.it.level":      "C1",
+    /* education */
+    "edu.label":           "Background",
+    "edu.h2":              "Education",
+    "edu.item1.when":      "2025 — Present",
+    "edu.item1.h3":        "M.Sc. Data Science and Business Informatics",
+    "edu.item1.p":         "Università di Pisa (Italy). Data mining, machine learning, statistics, databases, optimization, big data systems.",
+    "edu.item2.h3":        "B.Sc. Business Administration (Economia Aziendale)",
+    "edu.item2.p":         "Università di Pisa : Management & Control curriculum. Management control, financial accounting, corporate finance, statistics.",
+    /* contact / footer */
+    "contact.label":       "Get in touch",
+    "contact.h2":          "Let's talk data.",
+    "contact.sub":         "I'm currently looking for a data science internship. Got a question or an opportunity? Fill out the form below and it'll land straight in my inbox.",
+    "form.firstname":      "First name",
+    "form.lastname":       "Last name",
+    "form.email":          "Email address",
+    "form.subject":        "What is this about?",
+    "form.select.default": "Select an option…",
+    "form.select.opt1":    "Internship opportunity",
+    "form.select.opt2":    "Collaboration on a project",
+    "form.select.opt3":    "Question about my work",
+    "form.select.opt4":    "Something else",
+    "form.message":        "Message",
+    "form.textarea.placeholder": "Tell me a bit about it…",
+    "form.consent":        'I have read and accept the <a href="privacy.html">Privacy Policy</a> and consent to the processing of my personal data for the purpose of responding to this enquiry.',
+    "form.submit":         "Send message",
+    "contact.direct":      'Prefer email? Reach me directly at <a href="mailto:naguemaeva26@gmail.com">naguemaeva26@gmail.com</a> · <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a>',
+    "contact.footnote":    '© 2026 Ivane Maeva Nague · <a href="privacy.html" style="color:#8E7FA6">Privacy Policy</a> · Built with plain HTML &amp; CSS, hosted on GitHub Pages.'
+  },
+
+  fr: {
+    "nav.projects":        "Projets",
+    "nav.skills":          "Compétences",
+    "nav.education":       "Formation",
+    "nav.contact":         "Contact",
+    "hero.eyebrow":        "Data Science & Informatique de Gestion",
+    "hero.h1":             'Transformer la donnée en <span class="accent">décisions</span>, un modèle à la fois.',
+    "hero.sub":            "Je suis Ivane Maeva Nague, étudiante en master à l'Università di Pisa. Je construis des pipelines de données de bout en bout : des jeux de données bruts aux modèles de machine learning interprétables.",
+    "hero.cta.projects":   "Voir mes projets",
+    "hero.cta.github":     "Profil GitHub",
+    "hero.cta.cv":         "Télécharger mon CV",
+    "projects.label":      "Travaux sélectionnés",
+    "projects.h2":         "Projets",
+    "proj1.h3":            "Prédiction d'une Utilisation Problématique d'Internet",
+    "proj1.p":             "Pipeline complet sur le dataset Child Mind Institute, combinant données tabulaires de questionnaires et séries temporelles issues de capteurs portables. Détection d'outliers, classification déséquilibrée, régression, classification par shapelets et explicabilité avec LIME & SHAP.",
+    "proj2.h3":            "Dataset Jeux de Plateau : Pipeline DM Complet",
+    "proj2.p":             "Pipeline de fouille de données sur un dataset de jeux de société : clustering K-Means et hiérarchique, classification par arbre de décision / KNN / Naive Bayes, et règles d'association Apriori avec des patterns à fort lift.",
+    "proj3.h3":            "Analyse de Données de Préférences Ordonnées en R",
+    "proj3.p":             "Analyse statistique de données d'enquête classées : agrégation de rangs, modélisation Plackett-Luce par maximum de vraisemblance, positionnement multidimensionnel par dépliage, et tests d'hypothèses (réimplémentés depuis un article publié).",
+    "proj4.h3":            "LUREX : Budget Commercial & de Production",
+    "proj4.p":             "Modèle de planification budgétaire annuelle pour un fabricant de chaussures : prévisions des ventes par gammes de produits et budget de production lié avec allocation des coûts, réalisé durant ma licence en gestion.",
+    "proj.repo":           "Voir le dépôt →",
+    "skills.label":        "Boîte à outils",
+    "skills.h2":           "Compétences",
+    "skills.col1.h3":      "Langages & Outils",
+    "skills.col2.h3":      "Machine Learning",
+    "skills.col2.li1":     "Clustering & réduction de dimensionnalité",
+    "skills.col2.li2":     "Méthodes d'ensemble (XGBoost, AdaBoost, RF)",
+    "skills.col2.li3":     "Séries temporelles (shapelets, DTW, matrix profile)",
+    "skills.col2.li4":     "Explicabilité (LIME, SHAP)",
+    "skills.col3.h3":      "Données & Statistiques",
+    "skills.col3.li1":     "Pipelines de fouille de données",
+    "skills.col3.li2":     "Conception de BDD (ER, SQL, normalisation)",
+    "skills.col3.li3":     "Inférence statistique & tests d'hypothèses",
+    "skills.col3.li4":     "Détection d'anomalies et de valeurs aberrantes",
+    "langs.label":         "Trilingue",
+    "langs.h2":            "Langues",
+    "langs.fr.name":       "Français",
+    "langs.fr.level":      "Langue maternelle",
+    "langs.en.name":       "Anglais",
+    "langs.en.level":      "Langue maternelle",
+    "langs.it.name":       "Italien",
+    "langs.it.level":      "C1",
+    "edu.label":           "Parcours",
+    "edu.h2":              "Formation",
+    "edu.item1.when":      "2025 — En cours",
+    "edu.item1.h3":        "Master Data Science et Informatique de Gestion",
+    "edu.item1.p":         "Università di Pisa (Italie). Fouille de données, machine learning, statistiques, bases de données, optimisation, big data.",
+    "edu.item2.h3":        "Licence Gestion d'Entreprise (Economia Aziendale)",
+    "edu.item2.p":         "Università di Pisa : cursus Management & Contrôle. Contrôle de gestion, comptabilité financière, finance d'entreprise, statistiques.",
+    "contact.label":       "Me contacter",
+    "contact.h2":          "Parlons données.",
+    "contact.sub":         "Je suis actuellement à la recherche d'un stage en data science. Une question ou une opportunité ? Remplissez le formulaire ci-dessous et votre message arrivera directement dans ma boîte mail.",
+    "form.firstname":      "Prénom",
+    "form.lastname":       "Nom",
+    "form.email":          "Adresse e-mail",
+    "form.subject":        "Quel est l'objet de votre message ?",
+    "form.select.default": "Sélectionnez une option…",
+    "form.select.opt1":    "Opportunité de stage",
+    "form.select.opt2":    "Collaboration sur un projet",
+    "form.select.opt3":    "Question sur mon travail",
+    "form.select.opt4":    "Autre chose",
+    "form.message":        "Message",
+    "form.textarea.placeholder": "Dites-m'en un peu plus…",
+    "form.consent":        'J\'ai lu et j\'accepte la <a href="privacy.html">Politique de confidentialité</a> et consens au traitement de mes données personnelles aux fins de répondre à cette demande.',
+    "form.submit":         "Envoyer le message",
+    "contact.direct":      'Préférez l\'e-mail ? Contactez-moi directement à <a href="mailto:naguemaeva26@gmail.com">naguemaeva26@gmail.com</a> · <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a>',
+    "contact.footnote":    '© 2026 Ivane Maeva Nague · <a href="privacy.html" style="color:#8E7FA6">Politique de confidentialité</a> · Réalisé en HTML &amp; CSS, hébergé sur GitHub Pages.'
+  },
+
+  it: {
+    "nav.projects":        "Progetti",
+    "nav.skills":          "Competenze",
+    "nav.education":       "Formazione",
+    "nav.contact":         "Contatti",
+    "hero.eyebrow":        "Data Science & Informatica Gestionale",
+    "hero.h1":             'Trasformare i dati in <span class="accent">decisioni</span>, un modello alla volta.',
+    "hero.sub":            "Sono Ivane Maeva Nague, studentessa magistrale all'Università di Pisa. Costruisco pipeline di dati end-to-end: da dataset grezzi e disordinati a modelli di machine learning interpretabili.",
+    "hero.cta.projects":   "Vedi i miei progetti",
+    "hero.cta.github":     "Profilo GitHub",
+    "hero.cta.cv":         "Scarica il CV",
+    "projects.label":      "Lavori selezionati",
+    "projects.h2":         "Progetti",
+    "proj1.h3":            "Previsione dell'Uso Problematico di Internet",
+    "proj1.p":             "Pipeline end-to-end sul dataset del Child Mind Institute, che combina dati tabulari di questionari con serie temporali da sensori indossabili. Rilevamento di outlier, classificazione sbilanciata, regressione, classificazione con shapelets e spiegabilità con LIME & SHAP.",
+    "proj2.h3":            "Dataset Giochi da Tavolo : Pipeline DM Completa",
+    "proj2.p":             "Pipeline completa di data mining su un dataset di giochi da tavolo: clustering K-Means e gerarchico, classificazione con alberi decisionali / KNN / Naive Bayes, e regole di associazione Apriori con pattern ad alto lift.",
+    "proj3.h3":            "Analisi di Dati di Preferenza Ordinata in R",
+    "proj3.p":             "Analisi statistica di dati di sondaggio ordinati: aggregazione di ranghi, modellazione Plackett-Luce con massima verosimiglianza, scaling multidimensionale per dispiegamento e test di ipotesi (reimplementati da un articolo pubblicato).",
+    "proj4.h3":            "LUREX : Budget Commerciale & di Produzione",
+    "proj4.p":             "Modello di pianificazione di budget annuale per un produttore di calzature: previsione delle vendite per linee di prodotto e budget di produzione collegato con allocazione dei costi, realizzato durante la triennale in economia aziendale.",
+    "proj.repo":           "Vedi il repository →",
+    "skills.label":        "Strumenti",
+    "skills.h2":           "Competenze",
+    "skills.col1.h3":      "Linguaggi & Strumenti",
+    "skills.col2.h3":      "Machine Learning",
+    "skills.col2.li1":     "Clustering & riduzione della dimensionalità",
+    "skills.col2.li2":     "Metodi ensemble (XGBoost, AdaBoost, RF)",
+    "skills.col2.li3":     "Serie temporali (shapelets, DTW, matrix profile)",
+    "skills.col2.li4":     "Spiegabilità (LIME, SHAP)",
+    "skills.col3.h3":      "Dati & Statistica",
+    "skills.col3.li1":     "Pipeline di data mining",
+    "skills.col3.li2":     "Progettazione di database (ER, SQL, normalizzazione)",
+    "skills.col3.li3":     "Inferenza statistica & test di ipotesi",
+    "skills.col3.li4":     "Rilevamento di anomalie e outlier",
+    "langs.label":         "Trilingue",
+    "langs.h2":            "Lingue",
+    "langs.fr.name":       "Francese",
+    "langs.fr.level":      "Madrelingua",
+    "langs.en.name":       "Inglese",
+    "langs.en.level":      "Madrelingua",
+    "langs.it.name":       "Italiano",
+    "langs.it.level":      "C1",
+    "edu.label":           "Percorso",
+    "edu.h2":              "Formazione",
+    "edu.item1.when":      "2025 — In corso",
+    "edu.item1.h3":        "Laurea Magistrale in Data Science e Informatica Gestionale",
+    "edu.item1.p":         "Università di Pisa (Italia). Data mining, machine learning, statistica, basi di dati, ottimizzazione, big data.",
+    "edu.item2.h3":        "Laurea Triennale in Economia Aziendale",
+    "edu.item2.p":         "Università di Pisa : curriculum Management & Controllo. Controllo di gestione, contabilità finanziaria, finanza aziendale, statistica.",
+    "contact.label":       "Scrivimi",
+    "contact.h2":          "Parliamo di dati.",
+    "contact.sub":         "Sono alla ricerca di uno stage in data science. Hai una domanda o un'opportunità? Compila il modulo qui sotto e il messaggio arriverà direttamente nella mia casella di posta.",
+    "form.firstname":      "Nome",
+    "form.lastname":       "Cognome",
+    "form.email":          "Indirizzo e-mail",
+    "form.subject":        "Di cosa si tratta?",
+    "form.select.default": "Seleziona un'opzione…",
+    "form.select.opt1":    "Opportunità di stage",
+    "form.select.opt2":    "Collaborazione a un progetto",
+    "form.select.opt3":    "Domanda sul mio lavoro",
+    "form.select.opt4":    "Altro",
+    "form.message":        "Messaggio",
+    "form.textarea.placeholder": "Raccontami un po'…",
+    "form.consent":        'Ho letto e accetto la <a href="privacy.html">Privacy Policy</a> e acconsento al trattamento dei miei dati personali ai fini della risposta a questa richiesta.',
+    "form.submit":         "Invia messaggio",
+    "contact.direct":      'Preferisci l\'e-mail? Scrivimi direttamente a <a href="mailto:naguemaeva26@gmail.com">naguemaeva26@gmail.com</a> · <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener">LinkedIn</a>',
+    "contact.footnote":    '© 2026 Ivane Maeva Nague · <a href="privacy.html" style="color:#8E7FA6">Privacy Policy</a> · Realizzato in HTML &amp; CSS, ospitato su GitHub Pages.'
+  }
+};
+
+/* ============================================================
+   ENGINE
+   ============================================================ */
+function applyLang(lang) {
+  const t = i18n[lang];
+  if (!t) return;
+
+  document.documentElement.lang = lang;
+
+  /* plain text nodes */
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = t[el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+
+  /* nodes that contain inner HTML (links, <span class="accent">, etc.) */
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = t[el.dataset.i18nHtml];
+    if (v !== undefined) el.innerHTML = v;
+  });
+
+  /* placeholder attributes */
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const v = t[el.dataset.i18nPlaceholder];
+    if (v !== undefined) el.setAttribute('placeholder', v);
+  });
+
+  /* update pressed state on switcher buttons */
+  document.querySelectorAll('.lang-switcher button').forEach(btn => {
+    btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
+  });
+
+  try { localStorage.setItem('lang', lang); } catch(e) {}
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(function(){
+  /* lang switcher */
+  document.querySelectorAll('.lang-switcher button').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  /* restore saved lang */
+  var savedLang = null;
+  try { savedLang = localStorage.getItem('lang'); } catch(e) {}
+  applyLang(savedLang && i18n[savedLang] ? savedLang : 'en');
+
+  /* theme toggle */
+  var btn = document.getElementById('theme-toggle');
+  var root = document.documentElement;
+  function setTheme(t){
+    root.setAttribute('data-theme', t);
+    btn.textContent = (t === 'dark') ? '☀️' : '🌙';
+    try { localStorage.setItem('theme', t); } catch(e) {}
+  }
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem('theme'); } catch(e) {}
+  var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+  btn.addEventListener('click', function(){
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+})();
 </script>
 
 </body>
