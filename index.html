@@ -198,6 +198,7 @@
   .projects__title{font-size:var(--h3-font-size);line-height:1.3}
   .projects__desc{font-size:var(--small-font-size);flex-grow:1}
   .metrics{display:flex;flex-wrap:wrap;gap:.5rem}
+  .projects__group{grid-column:1/-1;font-size:var(--h3-font-size,1.1rem);font-weight:700;color:var(--accent-text);margin-top:1rem}
   .metric{font-size:var(--smaller-font-size);font-weight:600;color:var(--accent-text);border:1.5px solid rgba(139,95,191,.35);border-radius:999px;padding:.15rem .7rem}
   .projects__link{color:var(--accent-text);font-size:var(--small-font-size);display:flex;align-items:center;gap:.25rem;font-weight:var(--font-medium)}
   .projects__link .icon{transition:transform .4s}
@@ -425,7 +426,7 @@
           <span data-i18n="hero.line2">Turning data into decisions, one model at a time.</span>
         </h3>
         <div class="home__buttons">
-          <a href="Resume_Ivane.pdf" download class="button button--ghost">
+          <a href="CV_Nague_Nkenfack_Ivane_EN.pdf" id="cv-link" download class="button button--ghost">
             <svg class="icon"><use href="#i-download"/></svg><span data-i18n="hero.cta.cv">Download CV</span>
           </a>
           <a href="#projects" class="button" data-i18n="hero.cta.projects">See my projects</a>
@@ -443,7 +444,7 @@
       </div>
 
       <div class="home__social" data-reveal style="--d:.3s">
-        <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener" class="home__social-link" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+        <a href="https://www.linkedin.com/in/ivane-nague-nkenfack/" target="_blank" rel="noopener" class="home__social-link" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
         <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener" class="home__social-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
         <a href="mailto:naguemaeva26@gmail.com" class="home__social-link" aria-label="Email"><svg class="icon"><use href="#i-mail"/></svg></a>
       </div>
@@ -477,7 +478,7 @@
           <div class="about__box">
             <svg class="icon about__icon"><use href="#i-briefcase"/></svg>
             <h3 class="about__title" data-i18n="about.box2.t">Looking for</h3>
-            <span class="about__subtitle" data-i18n="about.box2.s">Data science internship</span>
+            <span class="about__subtitle" data-i18n="about.box2.s">Data / Business Analyst internship</span>
           </div>
         </div>
 
@@ -494,6 +495,30 @@
 
     <div class="projects__container container grid">
 
+      <h3 class="projects__group" data-i18n="projects.g1" data-reveal>Hackathons</h3>
+      <article class="projects__card" data-reveal>
+        <span class="projects__tag">Hackathon · Amazon · Ring</span>
+        <h3 class="projects__title" data-i18n="hack1.h3">Rhythm : Morning Check-in for Relatives</h3>
+        <p class="projects__desc" data-i18n="hack1.p">A morning check-in system for relatives who live alone. It learns the daily routine from Ring motion metadata (no video) and sends one email if the day starts later than usual. Alert times use the 95th percentile of 8 weeks of activity, separately for weekdays and weekends.</p>
+        <div class="metrics"><span class="metric">0 false alerts / month</span><span class="metric">60/60 silent days caught</span><span class="metric">Python · FastAPI</span></div>
+        <a class="projects__link" href="https://github.com/Ivanemaeva/rhythm" target="_blank" rel="noopener"><span data-i18n="proj.repo">View repository</span><svg class="icon"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="projects__card" data-reveal style="--d:.1s">
+        <span class="projects__tag">Hackathon · IBM Bob 2.0 · Solo</span>
+        <h3 class="projects__title" data-i18n="hack2.h3">PreFlight : Release Risk Auditor</h3>
+        <p class="projects__desc" data-i18n="hack2.p">Built solo in 48 hours. It compares two git versions and creates a readiness report: risk score, risky changes, test coverage gaps, config mismatches and a rollback plan. Code changes are analyzed with Python AST, with a live web dashboard.</p>
+        <div class="metrics"><span class="metric">121 automated tests</span><span class="metric">48 hours</span><span class="metric">Python · FastAPI</span></div>
+        <a class="projects__link" href="https://github.com/Ivanemaeva/Preflight" target="_blank" rel="noopener"><span data-i18n="proj.repo">View repository</span><svg class="icon"><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="projects__card" data-reveal>
+        <span class="projects__tag">Hackathon · HackoWatt · Team of 2</span>
+        <h3 class="projects__title" data-i18n="hack3.h3">WattWise Home : Energy Forecasting App</h3>
+        <p class="projects__desc" data-i18n="hack3.p">An app that forecasts household energy use, finds peaks and checks if solar panels pay off, using real data from 17 homes and ERA5 weather data. My teammate built the forecasting backend; I built and deployed the Streamlit app.</p>
+        <div class="metrics"><span class="metric">189,078 hourly rows</span><span class="metric">17 homes</span><span class="metric">Python · Streamlit</span></div>
+        <a class="projects__link" href="https://github.com/Ivanemaeva/WattWise-Home" target="_blank" rel="noopener"><span data-i18n="proj.repo">View repository</span><svg class="icon"><use href="#i-arrow"/></svg></a>
+      </article>
+
+      <h3 class="projects__group" data-i18n="projects.g2" data-reveal>Academic projects</h3>
       <article class="projects__card" data-reveal>
         <span class="projects__tag">Machine Learning · Time Series · XAI</span>
         <h3 class="projects__title" data-i18n="proj1.h3">Predicting Problematic Internet Use</h3>
@@ -542,6 +567,7 @@
           <div class="skills__data"><svg class="icon"><use href="#i-check"/></svg><span class="skills__name">SQL</span></div>
           <div class="skills__data"><svg class="icon"><use href="#i-check"/></svg><span class="skills__name">R</span></div>
           <div class="skills__data"><svg class="icon"><use href="#i-check"/></svg><span class="skills__name">Excel · Git · GitHub</span></div>
+          <div class="skills__data"><svg class="icon"><use href="#i-check"/></svg><span class="skills__name">FastAPI · Streamlit</span></div>
         </div>
       </div>
 
@@ -632,7 +658,7 @@
   <section class="contact section" id="contact" data-nav="contact">
     <span class="section__subtitle" data-i18n="contact.sub" data-reveal>Get in touch</span>
     <h2 class="section__title" data-i18n="contact.title" data-reveal>Let's talk data</h2>
-    <p class="section__lead container" data-i18n="contact.lead" data-reveal>I'm currently looking for a data science internship. Got a question or an opportunity? Fill out the form and it'll land straight in my inbox.</p>
+    <p class="section__lead container" data-i18n="contact.lead" data-reveal>I'm currently looking for a Data / Business Analyst internship. Got a question or an opportunity? Fill out the form and it'll land straight in my inbox.</p>
 
     <div class="contact__container container grid">
       <div data-reveal>
@@ -648,7 +674,7 @@
             <svg class="icon contact__card-icon"><use href="#i-linkedin"/></svg>
             <h3 class="contact__card-title">LinkedIn</h3>
             <span class="contact__card-data">Ivane Maeva Nague</span>
-            <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener" class="contact__button"><span data-i18n="contact.connect">Connect with me</span><svg class="icon"><use href="#i-arrow"/></svg></a>
+            <a href="https://www.linkedin.com/in/ivane-nague-nkenfack/" target="_blank" rel="noopener" class="contact__button"><span data-i18n="contact.connect">Connect with me</span><svg class="icon"><use href="#i-arrow"/></svg></a>
           </div>
           <div class="contact__card">
             <svg class="icon contact__card-icon"><use href="#i-github"/></svg>
@@ -714,7 +740,7 @@
     </ul>
 
     <div class="footer__social">
-      <a href="https://www.linkedin.com/in/ivane-maeva-nague-nkenfack-627714323/" target="_blank" rel="noopener" class="footer__social-link" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
+      <a href="https://www.linkedin.com/in/ivane-nague-nkenfack/" target="_blank" rel="noopener" class="footer__social-link" aria-label="LinkedIn"><svg class="icon"><use href="#i-linkedin"/></svg></a>
       <a href="https://github.com/Ivanemaeva" target="_blank" rel="noopener" class="footer__social-link" aria-label="GitHub"><svg class="icon"><use href="#i-github"/></svg></a>
       <a href="mailto:naguemaeva26@gmail.com" class="footer__social-link" aria-label="Email"><svg class="icon"><use href="#i-mail"/></svg></a>
     </div>
@@ -739,7 +765,7 @@ const i18n = {
 
     "about.sub":"My intro","about.title":"About me",
     "about.box1.t":"M.Sc. student","about.box1.s":"Data Science & BI",
-    "about.box2.t":"Looking for","about.box2.s":"Data science internship",
+    "about.box2.t":"Looking for","about.box2.s":"Data / Business Analyst internship",
     "about.p":"I'm a master's student in Data Science and Business Informatics at the Università di Pisa, and my business-administration background shapes how I read data: I care as much about the decision behind a model as about the model itself. I like taking a messy dataset all the way to something interpretable.",
     "about.cta":"Contact me",
 
@@ -752,6 +778,14 @@ const i18n = {
     "proj3.p":"Statistical analysis of ranked survey data: rank aggregation, Plackett-Luce modelling with maximum likelihood, unfolding multidimensional scaling, and hypothesis testing (re-implemented from a published paper).",
     "proj4.h3":"LUREX : Commercial & Production Budget",
     "proj4.p":"Full-year budget planning model for a footwear manufacturer: sales forecasting across product lines and a linked production budget with cost allocation built during my business administration bachelor's.",
+    "projects.g1":"Hackathons",
+    "projects.g2":"Academic projects",
+    "hack1.h3":"Rhythm : Morning Check-in for Relatives",
+    "hack1.p":"A morning check-in system for relatives who live alone. It learns the daily routine from Ring motion metadata (no video) and sends one email if the day starts later than usual. Alert times use the 95th percentile of 8 weeks of activity, separately for weekdays and weekends.",
+    "hack2.h3":"PreFlight : Release Risk Auditor",
+    "hack2.p":"Built solo in 48 hours. It compares two git versions and creates a readiness report: risk score, risky changes, test coverage gaps, config mismatches and a rollback plan. Code changes are analyzed with Python AST, with a live web dashboard.",
+    "hack3.h3":"WattWise Home : Energy Forecasting App",
+    "hack3.p":"An app that forecasts household energy use, finds peaks and checks if solar panels pay off, using real data from 17 homes and ERA5 weather data. My teammate built the forecasting backend; I built and deployed the Streamlit app.",
     "proj.repo":"View repository",
 
     "skills.sub":"My toolbox","skills.title":"Skills",
@@ -780,7 +814,7 @@ const i18n = {
     "langs.it.name":"Italian",
 
     "contact.sub":"Get in touch","contact.title":"Let's talk data",
-    "contact.lead":"I'm currently looking for a data science internship. Got a question or an opportunity? Fill out the form and it'll land straight in my inbox.",
+    "contact.lead":"I'm currently looking for a Data / Business Analyst internship. Got a question or an opportunity? Fill out the form and it'll land straight in my inbox.",
     "contact.talk":"Talk to me","contact.msg":"Write me a message",
     "contact.write":"Write me","contact.connect":"Connect with me","contact.follow":"See my code",
     "form.firstname":"First name","form.lastname":"Last name","form.email":"Email address",
@@ -804,7 +838,7 @@ const i18n = {
 
     "about.sub":"Mon introduction","about.title":"À propos de moi",
     "about.box1.t":"Étudiante M.Sc.","about.box1.s":"Data Science & BI",
-    "about.box2.t":"Je recherche","about.box2.s":"Stage en data science",
+    "about.box2.t":"Je recherche","about.box2.s":"Stage Data / Business Analyst",
     "about.p":"Je suis étudiante en master Data Science et Informatique de Gestion à l'Università di Pisa, et mon parcours en gestion d'entreprise influence ma façon de lire les données : la décision derrière un modèle m'importe autant que le modèle lui-même. J'aime mener un jeu de données brut jusqu'à un résultat interprétable.",
     "about.cta":"Me contacter",
 
@@ -817,6 +851,14 @@ const i18n = {
     "proj3.p":"Analyse statistique de données d'enquête classées : agrégation de rangs, modélisation Plackett-Luce par maximum de vraisemblance, positionnement multidimensionnel par dépliage, et tests d'hypothèses (réimplémentés depuis un article publié).",
     "proj4.h3":"LUREX : Budget Commercial & de Production",
     "proj4.p":"Modèle de planification budgétaire annuelle pour un fabricant de chaussures : prévisions des ventes par gammes de produits et budget de production lié avec allocation des coûts, réalisé durant ma licence en gestion.",
+    "projects.g1":"Hackathons",
+    "projects.g2":"Projets universitaires",
+    "hack1.h3":"Rhythm : Vérification Matinale pour les Proches",
+    "hack1.p":"Un système de vérification matinale pour les proches qui vivent seuls. Il apprend la routine à partir des métadonnées de mouvement Ring (sans vidéo) et envoie un e-mail si la journée commence plus tard que d'habitude. Les seuils d'alerte utilisent le 95e percentile de 8 semaines d'activité, séparément en semaine et le week-end.",
+    "hack2.h3":"PreFlight : Audit des Risques de Mise en Production",
+    "hack2.p":"Réalisé en solo en 48 heures. Il compare deux versions git et génère un rapport : score de risque, changements risqués, tests manquants, configurations incohérentes et plan de rollback. Le code est analysé avec l'AST de Python, avec un tableau de bord web en ligne.",
+    "hack3.h3":"WattWise Home : Prévision de la Consommation d'Énergie",
+    "hack3.p":"Une app qui prévoit la consommation d'énergie d'un foyer, repère les pics et vérifie la rentabilité des panneaux solaires, avec les données réelles de 17 maisons et la météo ERA5. L'autre membre de l'équipe a créé le backend de prévision ; j'ai développé et mis en ligne l'app Streamlit.",
     "proj.repo":"Voir le dépôt",
 
     "skills.sub":"Ma boîte à outils","skills.title":"Compétences",
@@ -845,7 +887,7 @@ const i18n = {
     "langs.it.name":"Italien",
 
     "contact.sub":"Me contacter","contact.title":"Parlons données",
-    "contact.lead":"Je suis actuellement à la recherche d'un stage en data science. Une question ou une opportunité ? Remplissez le formulaire et votre message arrivera directement dans ma boîte mail.",
+    "contact.lead":"Je recherche actuellement un stage Data / Business Analyst. Une question ou une opportunité ? Remplissez le formulaire et votre message arrivera directement dans ma boîte mail.",
     "contact.talk":"Parlez-moi","contact.msg":"Écrivez-moi un message",
     "contact.write":"Écrivez-moi","contact.connect":"Connectons-nous","contact.follow":"Voir mon code",
     "form.firstname":"Prénom","form.lastname":"Nom","form.email":"Adresse e-mail",
@@ -869,7 +911,7 @@ const i18n = {
 
     "about.sub":"La mia presentazione","about.title":"Chi sono",
     "about.box1.t":"Laurea magistrale","about.box1.s":"Data Science & BI",
-    "about.box2.t":"Cerco","about.box2.s":"Stage in data science",
+    "about.box2.t":"Cerco","about.box2.s":"Tirocinio Data / Business Analyst",
     "about.p":"Frequento la laurea magistrale in Data Science and Business Informatics all'Università di Pisa, e il mio background in economia aziendale influenza il modo in cui leggo i dati: mi interessa tanto la decisione dietro un modello quanto il modello stesso. Mi piace portare un dataset grezzo fino a un risultato interpretabile.",
     "about.cta":"Contattami",
 
@@ -882,6 +924,14 @@ const i18n = {
     "proj3.p":"Analisi statistica di dati di sondaggio ordinati: aggregazione di ranghi, modellazione Plackett-Luce con massima verosimiglianza, scaling multidimensionale per dispiegamento e test di ipotesi (reimplementati da un articolo pubblicato).",
     "proj4.h3":"LUREX : Budget Commerciale & di Produzione",
     "proj4.p":"Modello di pianificazione di budget annuale per un produttore di calzature: previsione delle vendite per linee di prodotto e budget di produzione collegato con allocazione dei costi, realizzato durante la triennale in economia aziendale.",
+    "projects.g1":"Hackathon",
+    "projects.g2":"Progetti universitari",
+    "hack1.h3":"Rhythm : Controllo Mattutino per i Parenti",
+    "hack1.p":"Un sistema di controllo mattutino per parenti che vivono da soli. Impara la routine dai metadati di movimento Ring (senza video) e invia un'email se la giornata inizia più tardi del solito. Le soglie di allerta usano il 95° percentile di 8 settimane di attività, separate per giorni feriali e weekend.",
+    "hack2.h3":"PreFlight : Analisi del Rischio di Rilascio",
+    "hack2.p":"Realizzato da sola in 48 ore. Confronta due versioni git e genera un report: punteggio di rischio, modifiche rischiose, test mancanti, configurazioni incoerenti e piano di rollback. Il codice è analizzato con l'AST di Python, con una dashboard web online.",
+    "hack3.h3":"WattWise Home : Previsione dei Consumi Energetici",
+    "hack3.p":"Un'app che prevede i consumi energetici domestici, individua i picchi e valuta la convenienza dei pannelli solari, con dati reali di 17 case e dati meteo ERA5. L'altro membro del team ha creato il backend di previsione; io ho sviluppato e pubblicato l'app Streamlit.",
     "proj.repo":"Vedi il repository",
 
     "skills.sub":"I miei strumenti","skills.title":"Competenze",
@@ -910,7 +960,7 @@ const i18n = {
     "langs.it.name":"Italiano",
 
     "contact.sub":"Scrivimi","contact.title":"Parliamo di dati",
-    "contact.lead":"Sono alla ricerca di uno stage in data science. Hai una domanda o un'opportunità? Compila il modulo e il messaggio arriverà direttamente nella mia casella di posta.",
+    "contact.lead":"Sono alla ricerca di un tirocinio come Data / Business Analyst. Hai una domanda o un'opportunità? Compila il modulo e il messaggio arriverà direttamente nella mia casella di posta.",
     "contact.talk":"Parlami","contact.msg":"Scrivimi un messaggio",
     "contact.write":"Scrivimi","contact.connect":"Connettiamoci","contact.follow":"Vedi il mio codice",
     "form.firstname":"Nome","form.lastname":"Cognome","form.email":"Indirizzo e-mail",
@@ -951,6 +1001,8 @@ function applyLang(lang){
   document.querySelectorAll('.lang-switcher button').forEach(btn => {
     btn.setAttribute('aria-pressed', btn.dataset.lang === lang ? 'true' : 'false');
   });
+  var cv = document.getElementById('cv-link');
+  if (cv) cv.setAttribute('href', 'CV_Nague_Nkenfack_Ivane_' + lang.toUpperCase() + '.pdf');
   try { localStorage.setItem('lang', lang); } catch(e) {}
 }
 
